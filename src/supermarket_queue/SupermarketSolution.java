@@ -1,24 +1,21 @@
 package supermarket_queue;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SupermarketSolution {
 	
 	public static int solveSuperMarketQueue(int[] customers, int n) {
 		int result = 0;
 		
 		// create n tills
-		List<ArrayList<Integer>> tills = new ArrayList<>();
+		int[] tills = new int[n];
 		
-		for (int i = 0; i < n; i++) {
-			ArrayList<Integer> till = new ArrayList<>();
-			tills.add(till);
+		for (int till : tills) {
+			till = 0;
 		}
 		
-		
 		//add customers to tills
+		int currentTill = 0;
 		for (int customer : customers) {
+			
 //			result += customer;
 		}
 		
