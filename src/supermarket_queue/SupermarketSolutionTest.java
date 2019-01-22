@@ -8,13 +8,14 @@ import org.junit.jupiter.api.Test;
 class SupermarketSolutionTest {
 
 	@Test
-	public void testNormalCondition() {
-		assertEquals(9, SupermarketSolution.solveSuperMarketQueue(new int[] { 2, 2, 3, 3, 4, 4 }, 2));
-	}
-
-	@Test
 	public void testEmptyArray() {
 		assertEquals(0, SupermarketSolution.solveSuperMarketQueue(new int[] {}, 1));
+	}
+	
+
+	@Test
+	public void testNormalCondition() {
+		assertEquals(9, SupermarketSolution.solveSuperMarketQueue(new int[] { 2, 2, 3, 3, 4, 4 }, 2));
 	}
 
 	@Test
