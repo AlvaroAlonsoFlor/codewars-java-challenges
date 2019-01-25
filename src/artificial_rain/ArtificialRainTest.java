@@ -14,6 +14,7 @@ class ArtificialRainTest {
 	    }
 	    private void doTest(final int[] numbers, final int expected) {
 	        assertEquals(expected, ArtificialRain.artificialRain(numbers));
+	        assertEquals(9, ArtificialRain.artificialRain(new int[] {1, 2, 3, 2, 2, 4, 8, 9, 8, 8, 7, 5, 6}));
 	    }
 
 }
