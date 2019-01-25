@@ -15,13 +15,12 @@ public class ArtificialRain {
         
         // Check coverage
         
-        
         for (int i = uniqueValues.length - 1 ; i >= 0; i--) {
         	int rangeCounter = 1;
         	int groundPos = ArtificialRain.findIndex(v, uniqueValues[i]);
         	
-        	if (groundPos - 1 >= 0 && v[groundPos] >= v[groundPos - 1]) rangeCounter++;
-        	if (groundPos + 1 < v.length || v[groundPos] >= v[groundPos + 1]) rangeCounter++;
+        	rangeCounter += ArtificialRain.calculateExtensionLeft(v, groundPos);
+        	rangeCounter += ArtificialRain.calculateExtensionRight(v, groundPos);
         	
         	if (rangeCounter > result) result = rangeCounter;
         }
@@ -29,14 +28,35 @@ public class ArtificialRain {
 		return result;
     }
 	
+	public static int calculateExtensionLeft(int[] arr, int groundPos) {
+		int extension = 0;
+		
+		if (groundPos - 1 >= 0 && arr[groundPos] >= arr[groundPos - 1]) {
+			extension++;
+			extension += ArtificialRain.calculateExtensionLeft(arr, groundPos - 1);
+		}
+    	
+		return extension;
+	}
+	
+	public static int calculateExtensionRight(int[] arr, int  groundPos) {
+		
+		int extension = 0;
+    	
+    	if (groundPos + 1 < arr.length && arr[groundPos] >= arr[groundPos + 1]) { 		
+    		extension++;
+    		extension += ArtificialRain.calculateExtensionRight(arr, groundPos + 1);
+    	}
+    	
+    	return extension;
+	}
+	
 	public static int findIndex(int[] arr, int element) {
 		
 		for (int i = 0; i < arr.length; i++) {
 			if(arr[i] == element) return i;	
 		}
 		
-		return -1;
-		
-		
+		return -1;		
 	}
 }
