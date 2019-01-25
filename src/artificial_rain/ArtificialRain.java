@@ -52,7 +52,7 @@ public class ArtificialRain {
 	}
 	
 	public static int findIndex(int[] arr, int element) {
-		
+		// Need to change this to handle 2 equal numbers
 		for (int i = 0; i < arr.length; i++) {
 			if(arr[i] == element) return i;	
 		}
