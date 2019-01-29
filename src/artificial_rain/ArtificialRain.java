@@ -1,5 +1,6 @@
 package artificial_rain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArtificialRain {
@@ -16,13 +17,18 @@ public class ArtificialRain {
         // Check coverage
         
         for (int i = uniqueValues.length - 1 ; i >= 0; i--) {
-        	int rangeCounter = 1;
-        	int groundPos = ArtificialRain.findIndex(v, uniqueValues[i]);
         	
-        	rangeCounter += ArtificialRain.calculateExtensionLeft(v, groundPos);
-        	rangeCounter += ArtificialRain.calculateExtensionRight(v, groundPos);
+        	ArrayList<Integer> groundPositions = ArtificialRain.findIndex(v, uniqueValues[i]);
         	
-        	if (rangeCounter > result) result = rangeCounter;
+        	for (int groundPos : groundPositions) {
+        		int rangeCounter = 1;
+        		rangeCounter += ArtificialRain.calculateExtensionLeft(v, groundPos);
+            	rangeCounter += ArtificialRain.calculateExtensionRight(v, groundPos);
+            	
+            	if (rangeCounter > result) result = rangeCounter;
+        	}
+        	
+        	
         }
 		
 		return result;
@@ -51,12 +57,13 @@ public class ArtificialRain {
     	return extension;
 	}
 	
-	public static int findIndex(int[] arr, int element) {
+	public static ArrayList<Integer> findIndex(int[] arr, int element) {
+		ArrayList<Integer> result = new ArrayList<>();
 		// Need to change this to handle 2 equal numbers
 		for (int i = 0; i < arr.length; i++) {
-			if(arr[i] == element) return i;	
+			if(arr[i] == element) result.add(i);	
 		}
 		
-		return -1;		
+		return result;		
 	}
 }
