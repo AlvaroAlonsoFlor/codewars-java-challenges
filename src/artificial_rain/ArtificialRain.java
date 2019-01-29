@@ -59,7 +59,7 @@ public class ArtificialRain {
 	
 	public static ArrayList<Integer> findIndex(int[] arr, int element) {
 		ArrayList<Integer> result = new ArrayList<>();
-		// Need to change this to handle 2 equal numbers
+		
 		for (int i = 0; i < arr.length; i++) {
 			if(arr[i] == element) result.add(i);	
 		}
