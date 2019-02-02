@@ -22,8 +22,9 @@ public class ArtificialRain {
         	
         	for (int groundPos : groundPositions) {
         		int rangeCounter = 1;
-        		rangeCounter += ArtificialRain.calculateExtensionLeft(v, groundPos);
-            	rangeCounter += ArtificialRain.calculateExtensionRight(v, groundPos);
+//        		rangeCounter += ArtificialRain.calculateExtensionLeft(v, groundPos);
+//            	rangeCounter += ArtificialRain.calculateExtensionRight(v, groundPos);
+        		rangeCounter += ArtificialRain.calculateExtension(v, groundPos);
             	
             	if (rangeCounter > result) result = rangeCounter;
         	}
@@ -34,13 +35,45 @@ public class ArtificialRain {
 		return result;
     }
 	
+	public static int calculateExtension(int[] arr, int groundPos) {
+		int extension = 0;
+		
+		int groundPosLeft = groundPos;
+		int groundPosRight = groundPos;
+		
+		while (groundPosLeft - 1 >= 0 || groundPosRight + 1 < arr.length) {
+			if (groundPosLeft - 1 >= 0 && arr[groundPosLeft] >= arr[groundPosLeft - 1]) {
+				extension++;
+				groundPosLeft--;
+			} else if (groundPosRight + 1 < arr.length && arr[groundPosRight] >= arr[groundPosRight + 1]) {
+				extension++;
+				groundPosRight++;
+			} else {
+				break;
+			}
+			
+		}
+		
+		
+		return extension;
+	}
+	
 	public static int calculateExtensionLeft(int[] arr, int groundPos) {
 		int extension = 0;
 		
-		if (groundPos - 1 >= 0 && arr[groundPos] >= arr[groundPos - 1]) {
-			extension++;
-			extension += ArtificialRain.calculateExtensionLeft(arr, groundPos - 1);
+		while (groundPos - 1 >= 0) {
+			if (arr[groundPos] >= arr[groundPos - 1]) { 		
+	    		extension++;
+			} else {
+				break;
+			}
+			groundPos--;
 		}
+		
+//		if (groundPos - 1 >= 0 && arr[groundPos] >= arr[groundPos - 1]) {
+//			extension++;
+//			extension += ArtificialRain.calculateExtensionLeft(arr, groundPos - 1);
+//		}
     	
 		return extension;
 	}
@@ -48,12 +81,21 @@ public class ArtificialRain {
 	public static int calculateExtensionRight(int[] arr, int  groundPos) {
 		
 		int extension = 0;
+		
+		while (groundPos + 1 < arr.length) {
+			if (arr[groundPos] >= arr[groundPos + 1]) { 		
+	    		extension++;
+			} else {
+				break;
+			}
+			groundPos++;
+		}
     	
-    	if (groundPos + 1 < arr.length && arr[groundPos] >= arr[groundPos + 1]) { 		
-    		extension++;
-    		extension += ArtificialRain.calculateExtensionRight(arr, groundPos + 1);
-    	}
-    	
+//    	if (groundPos + 1 < arr.length && arr[groundPos] >= arr[groundPos + 1]) { 		
+//    		extension++;
+//    		extension += ArtificialRain.calculateExtensionRight(arr, groundPos + 1);
+//    	}
+//    	
     	return extension;
 	}
 	
